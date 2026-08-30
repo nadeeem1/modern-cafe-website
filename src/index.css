@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Fraunces", "Georgia", serif;
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+
+  /* Cream — page background, light surfaces */
+  --color-cream-50: #fbf8f1;
+  --color-cream-100: #f5efe2;
+  --color-cream-200: #ece2ce;
+
+  /* Sand — hairlines, dividers, muted accents */
+  --color-sand-200: #e5dac4;
+  --color-sand-300: #d4c3a0;
+  --color-sand-400: #baa17a;
+
+  /* Espresso — dark text, dark surfaces */
+  --color-espresso-600: #5a4530;
+  --color-espresso-700: #483623;
+  --color-espresso-800: #35271a;
+  --color-espresso-900: #271c12;
+  --color-espresso-950: #1a120b;
+
+  /* Clay — deep terracotta, used sparingly as the single accent */
+  --color-clay-50: #faf0e9;
+  --color-clay-100: #f2ddd0;
+  --color-clay-200: #e4c0a9;
+  --color-clay-300: #d39a74;
+  --color-clay-400: #c07547;
+  --color-clay-500: #a65a30;
+  --color-clay-600: #8c4a26;
+  --color-clay-700: #703b1f;
+
+  /* Moss — deep green, secondary accent */
+  --color-moss-100: #dee5dc;
+  --color-moss-300: #a0b19d;
+  --color-moss-500: #5b7260;
+  --color-moss-700: #3b4f40;
+  --color-moss-800: #2e3d32;
+  --color-moss-900: #222c25;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-cream-50 font-sans text-espresso-900 antialiased;
+    font-optical-sizing: auto;
+  }
+
+  ::selection {
+    @apply bg-clay-500/90 text-cream-50;
+  }
+
+  :where(a, button, input, select, textarea):focus-visible {
+    @apply outline-2 outline-offset-2 outline-clay-500;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-cream-100;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-sand-300;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-sand-400;
+  }
+}
+
+@layer components {
+  /* Page-level horizontal container */
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12;
+  }
+
+  /* Section eyebrow label */
+  .eyebrow {
+    @apply text-[11px] font-bold tracking-[0.28em] uppercase;
+  }
+
+  /* Form primitives (shared by reservation + newsletter forms) */
+  .field-label {
+    @apply mb-1.5 block text-[11px] font-bold tracking-[0.16em] text-espresso-700 uppercase;
+  }
+
+  .field {
+    @apply w-full rounded-xl border border-sand-300 bg-cream-50 px-4 py-3 text-sm text-espresso-900 shadow-[inset_0_1px_2px] shadow-espresso-900/5 outline-none transition placeholder:text-espresso-600/40 focus:border-clay-500 focus:bg-white focus:ring-2 focus:ring-clay-500/20;
+  }
+
+  .field-invalid {
+    @apply border-red-400 focus:border-red-500 focus:ring-red-400/20;
+  }
+
+  .field-error-msg {
+    @apply mt-1.5 flex items-center gap-1 text-xs font-medium text-red-600;
+  }
+}
+
+@layer utilities {
+  /* Subtle film-grain overlay for hero + dark surfaces */
+  .texture-grain {
+    position: relative;
+  }
+
+  .texture-grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 160px 160px;
+  }
+
+  /* Infinite marquee loop */
+  .animate-marquee {
+    animation: marquee 55s linear infinite;
+  }
+
+  .group-marquee:hover .animate-marquee {
+    animation-play-state: paused;
+  }
+
+  /* Slow rotation for the circular stamp badge */
+  .animate-spin-slow {
+    animation: spin-slow 20s linear infinite;
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
