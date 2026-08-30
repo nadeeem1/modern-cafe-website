@@ -9,7 +9,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/modern-cafe-website">
       <ScrollToTop />
       <Routes>
         <Route element={<Layout />}>
