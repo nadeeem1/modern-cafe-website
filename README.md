@@ -1,5 +1,7 @@
 # Ember & Oak — Roastery & Café
 
+> **Repository:** https://github.com/nadeeem1/modern-cafe-website
+
 A production-quality marketing site for an independent coffee roastery and café.
 Built as a portfolio piece: multi-page React app with a filterable menu,
 client-validated table reservations, a photo lightbox, and a fully custom
